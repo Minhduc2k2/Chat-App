@@ -11,6 +11,8 @@ function AuthProvider({ children }) {
   const [isPending, setIsPending] = useState(true);
   const [showRoomModal, setShowRoomModal] = useState(false);
   const [showInviteModal, setShowInviteModal] = useState(false);
+  const [showShowChangeNameRoomModal, setShowChangeNameRoomModal] =
+    useState(false);
   const [selectedRoomID, setSelectedRoomID] = useState("");
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [isLightmode, setIsLightmode] = useState(true);
@@ -40,6 +42,8 @@ function AuthProvider({ children }) {
         setShowRoomModal,
         showInviteModal,
         setShowInviteModal,
+        showShowChangeNameRoomModal,
+        setShowChangeNameRoomModal,
         selectedRoomID,
         setSelectedRoomID,
         selectedRoom,

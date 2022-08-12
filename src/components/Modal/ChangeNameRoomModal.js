@@ -1,11 +1,16 @@
 import { Form, Input, Modal, Typography } from "antd";
 import { useState } from "react";
-import { addDocument } from "../../firebase/service";
+import { updateDocument } from "../../firebase/service";
 import { useAuthContext } from "../../hooks/useAuthContext";
-function RoomModal() {
-  const { user, showRoomModal, setShowRoomModal } = useAuthContext();
-  const [form] = Form.useForm();
+
+function ChangeNameRoomModal() {
+  const {
+    selectedRoomID,
+    showShowChangeNameRoomModal,
+    setShowChangeNameRoomModal,
+  } = useAuthContext();
   const [error, setError] = useState("");
+  const [form] = Form.useForm();
 
   const handleOk = () => {
     setError("");
@@ -13,29 +18,30 @@ function RoomModal() {
       setError("Empty Field!");
       return;
     }
-    addDocument("rooms", { ...form.getFieldsValue(), members: [user.uid] });
+    updateDocument("rooms", { ...form.getFieldsValue() }, selectedRoomID);
     form.resetFields();
-    setShowRoomModal(false);
+    setShowChangeNameRoomModal(false);
   };
   const handleCancel = () => {
     setError("");
     form.resetFields();
-    setShowRoomModal(false);
+    setShowChangeNameRoomModal(false);
   };
   return (
     <Modal
-      title="Create Room"
-      visible={showRoomModal}
+      title="Change Room Name"
+      visible={showShowChangeNameRoomModal}
       onOk={handleOk}
       onCancel={handleCancel}
     >
-      <Form form={form} layout="vertical">
+      <Form layout="vertical" form={form}>
         <Form.Item label="Name" name="name">
-          <Input placeholder="Enter Room Name" />
+          <Input />
         </Form.Item>
         <Form.Item label="Description" name="description">
-          <Input placeholder="Enter Room Description" />
+          <Input />
         </Form.Item>
+
         <Typography.Text style={{ color: "red", fontWeight: "bold" }}>
           {error}
         </Typography.Text>
@@ -44,4 +50,4 @@ function RoomModal() {
   );
 }
 
-export default RoomModal;
+export default ChangeNameRoomModal;

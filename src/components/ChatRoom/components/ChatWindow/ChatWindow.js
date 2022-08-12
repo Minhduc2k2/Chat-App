@@ -7,6 +7,8 @@ import { addDocument } from "../../../../firebase/service";
 import { useAuthContext } from "../../../../hooks/useAuthContext";
 import { useCollection } from "../../../../hooks/useCollection";
 import Message from "./Message";
+import Pen from "../../../../assets/img/pen.svg";
+
 const WrapperStyled = styled.div`
   height: 100vh;
   width: 100%;
@@ -75,6 +77,7 @@ function ChatWindow() {
     user,
     selectedRoomID,
     setShowInviteModal,
+    setShowChangeNameRoomModal,
     setSelectedRoom,
     isLightmode,
   } = useAuthContext();
@@ -125,7 +128,7 @@ function ChatWindow() {
 
     form.resetFields(["message"]);
 
-    //TODO: Focus input again when send message
+    //!Focus input again when send message
     if (inputRef?.current) {
       setTimeout(() => {
         inputRef.current.focus();
@@ -167,12 +170,20 @@ function ChatWindow() {
         <>
           <HeaderStyled>
             <div className="header__info">
-              <p
-                className="header__title"
-                style={isLightmode === false ? { color: "#fff" } : null}
-              >
-                {selectedRoom.name}
-              </p>
+              <div style={{ display: "flex" }}>
+                <p
+                  className="header__title"
+                  style={isLightmode === false ? { color: "#fff" } : null}
+                >
+                  {selectedRoom.name}
+                </p>
+                <img
+                  src={Pen}
+                  alt="Pen"
+                  style={{ marginLeft: "12px", cursor: "pointer" }}
+                  onClick={() => setShowChangeNameRoomModal(true)}
+                />
+              </div>
               <span
                 className="header__description"
                 style={isLightmode === false ? { color: "#ccc" } : null}

@@ -9,6 +9,12 @@ export const addDocument = (collection, data) => {
   });
 };
 
+export const updateDocument = (collection, attributes, id) => {
+  const res = projectFirestore.collection(collection);
+
+  res.doc(id).update(attributes);
+};
+
 // tao keywords cho displayName, su dung cho search
 export const generateKeywords = (displayName) => {
   // liet ke tat cac hoan vi. vd: name = ["David", "Van", "Teo"]
