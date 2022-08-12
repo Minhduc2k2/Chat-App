@@ -1,0 +1,13 @@
+.chatroom {
+  display: flex;
+  height: 100vh;
+}
+
+.chatwindow {
+  width: 75%;
+}
+
+.sidebar {
+  width: 25%;
+  background-color: #fe2c55;
+}
