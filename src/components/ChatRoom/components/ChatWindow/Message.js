@@ -18,7 +18,7 @@ const WrapperStyled = styled.div`
     margin-left: 30px;
     display: inline-block;
     white-space: initial;
-    width: 500px;
+    max-width: 500px;
     padding: 12px;
     border-radius: 18px;
   }
@@ -44,7 +44,7 @@ export default function Message({
   photoURL,
   userid_inmess,
 }) {
-  const { user, isLightmode } = useAuthContext();
+  const { user, isLightmode, selectedUser } = useAuthContext();
   return (
     <WrapperStyled
       style={user.uid === userid_inmess ? { textAlign: "right" } : null}
@@ -55,12 +55,14 @@ export default function Message({
             <Avatar size="small" src={photoURL}>
               {photoURL ? "" : displayName?.charAt(0)?.toUpperCase()}
             </Avatar>
-            <Typography.Text
-              className="author"
-              style={isLightmode === false ? { color: "#fff" } : null}
-            >
-              {displayName}
-            </Typography.Text>
+            {selectedUser === null && (
+              <Typography.Text
+                className="author"
+                style={isLightmode === false ? { color: "#fff" } : null}
+              >
+                {displayName}
+              </Typography.Text>
+            )}
           </>
         )}
         <Typography.Text className="date">

@@ -1,7 +1,7 @@
 import firebase, { projectFirestore } from "./config";
 
-export const addDocument = (collection, data) => {
-  const res = projectFirestore.collection(collection);
+export const addDocument = async (collection, data) => {
+  const res = await projectFirestore.collection(collection);
 
   res.add({
     ...data,
@@ -9,8 +9,8 @@ export const addDocument = (collection, data) => {
   });
 };
 
-export const updateDocument = (collection, attributes, id) => {
-  const res = projectFirestore.collection(collection);
+export const updateDocument = async (collection, attributes, id) => {
+  const res = await projectFirestore.collection(collection);
 
   res.doc(id).update(attributes);
 };

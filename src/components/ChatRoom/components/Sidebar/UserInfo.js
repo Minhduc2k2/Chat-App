@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { projectAuth, projectFirestore } from "../../../../firebase/config";
+import { updateDocument } from "../../../../firebase/service";
 import { useAuthContext } from "../../../../hooks/useAuthContext";
 import Avatar from "./Avatar";
 
@@ -8,6 +9,7 @@ function UserInfor() {
     user,
     setSelectedRoomID,
     setSelectedRoom,
+    setSelectedUser,
     setShowRoomModal,
     setShowInviteModal,
   } = useAuthContext();
@@ -24,12 +26,15 @@ function UserInfor() {
   if (!user) {
     return null;
   }
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setSelectedRoomID("");
     setSelectedRoom(null);
     setShowRoomModal(false);
     setShowInviteModal(false);
-    projectAuth.signOut();
+    setSelectedUser(null);
+    //! Không hiểu sao phải logout trước mới update online được, update trước bị lỗi :>
+    await projectAuth.signOut();
+    await updateDocument("users", { online: false }, user.uid);
   };
   return (
     <div className="userinfo">

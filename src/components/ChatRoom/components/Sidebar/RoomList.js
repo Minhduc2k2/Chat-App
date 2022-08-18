@@ -50,12 +50,17 @@ const LinkStyled = styled(Typography.Link)`
 //   members:[uid1,uid2,...]
 // }
 function RoomList() {
-  const { user, setShowRoomModal, setSelectedRoomID } = useAuthContext();
+  const { user, setShowRoomModal, setSelectedRoomID, setSelectedUser } =
+    useAuthContext();
   const { document } = useCollection("rooms", [
     "members",
     "array-contains",
     user.uid,
   ]);
+  const handleChooseRoom = (id) => {
+    setSelectedRoomID(id);
+    setSelectedUser(null);
+  };
   const handleAddRoom = () => {
     setShowRoomModal(true);
   };
@@ -63,7 +68,7 @@ function RoomList() {
     <Collapse ghost defaultActiveKey={["1"]}>
       <PanelStyled header="Room List" key="1">
         {document?.map((room) => (
-          <LinkStyled key={room.id} onClick={() => setSelectedRoomID(room.id)}>
+          <LinkStyled key={room.id} onClick={() => handleChooseRoom(room.id)}>
             {room.name}
           </LinkStyled>
         ))}

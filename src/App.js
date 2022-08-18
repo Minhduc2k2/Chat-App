@@ -5,6 +5,7 @@ import ChatRoom from "./components/ChatRoom/ChatRoom";
 import RoomModal from "./components/Modal/RoomModal";
 import InviteModal from "./components/Modal/InviteModal";
 import ChangeNameRoomModal from "./components/Modal/ChangeNameRoomModal";
+import ChangeNameUserModal from "./components/Modal/ChangeNameUserModal";
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
       <RoomModal />
       <InviteModal />
       <ChangeNameRoomModal />
+      <ChangeNameUserModal />
     </>
   );
 }

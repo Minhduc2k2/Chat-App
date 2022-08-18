@@ -12,3 +12,9 @@ Which Firebase emulators do you want to set up? Press Space to select emulators,
 
 firebase emulators:start
 ```
+
+#Run localhost with HTTPS
+
+```
+($env:HTTPS = "true") -and (npm start)
+```

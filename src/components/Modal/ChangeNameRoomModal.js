@@ -6,7 +6,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 function ChangeNameRoomModal() {
   const {
     selectedRoomID,
-    showShowChangeNameRoomModal,
+    showChangeNameRoomModal,
     setShowChangeNameRoomModal,
   } = useAuthContext();
   const [error, setError] = useState("");
@@ -30,7 +30,7 @@ function ChangeNameRoomModal() {
   return (
     <Modal
       title="Change Room Name"
-      visible={showShowChangeNameRoomModal}
+      visible={showChangeNameRoomModal}
       onOk={handleOk}
       onCancel={handleCancel}
     >

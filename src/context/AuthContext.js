@@ -11,11 +11,14 @@ function AuthProvider({ children }) {
   const [isPending, setIsPending] = useState(true);
   const [showRoomModal, setShowRoomModal] = useState(false);
   const [showInviteModal, setShowInviteModal] = useState(false);
-  const [showShowChangeNameRoomModal, setShowChangeNameRoomModal] =
-    useState(false);
+  const [showChangeNameRoomModal, setShowChangeNameRoomModal] = useState(false);
+  const [showChangeNameUserModal, setShowChangeNameUserModal] = useState(false);
   const [selectedRoomID, setSelectedRoomID] = useState("");
+  const [selectedNickNameID, setSelectedNickNameID] = useState("");
   const [selectedRoom, setSelectedRoom] = useState(null);
+  const [selectedUser, setSelectedUser] = useState(null);
   const [isLightmode, setIsLightmode] = useState(true);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,12 +45,18 @@ function AuthProvider({ children }) {
         setShowRoomModal,
         showInviteModal,
         setShowInviteModal,
-        showShowChangeNameRoomModal,
+        showChangeNameRoomModal,
         setShowChangeNameRoomModal,
+        showChangeNameUserModal,
+        setShowChangeNameUserModal,
         selectedRoomID,
         setSelectedRoomID,
+        selectedNickNameID,
+        setSelectedNickNameID,
         selectedRoom,
         setSelectedRoom,
+        selectedUser,
+        setSelectedUser,
         isLightmode,
         setIsLightmode,
       }}
